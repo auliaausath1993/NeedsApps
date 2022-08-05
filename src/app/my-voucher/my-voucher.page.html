@@ -1,0 +1,26 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <!-- <ion-back-button></ion-back-button> -->
+        <ion-icon class="back" name="arrow-back" (click)="goBack()" ></ion-icon>
+    </ion-buttons>
+    <!-- <ion-icon name="arrow-back" (click)="goBack()"></ion-icon> -->
+    <ion-searchbar animated placeholder="Search" [(ngModel)]="keyword"  (keyup.enter)="doSearch($event)" (ionChange)="doSearch($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <div class="list" *ngFor="let x of data" >
+      <div class="head" *ngIf="x.status=='0'" >{{x.nama}}</div>
+      <div class="head_red" *ngIf="x.status=='1'" >{{x.nama}}</div>
+      <div class="body">{{x.voucher.description}}</div>
+      <div class="padding">
+        <button class="btn" (click)="gunakan(x)" >Use Voucher</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

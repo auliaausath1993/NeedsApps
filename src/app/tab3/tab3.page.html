@@ -1,0 +1,102 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar">
+    <div class="flex-between">
+      <span class="page_title">
+        {{menu3}}
+      </span>
+      <span size="6" class="total">
+        <b>Total</b>: {{toRp(total)}}
+      </span>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <div *ngIf="list_cart.length === 0 && !showSkeleton" class="div-no-cart">
+      <img src="../../assets/imgs/no-cart.png">
+      <ion-row>
+        <ion-col size="12" class="ion-no-padding ion-padding-horizontal">
+          <button class="btn btn_checkout" (click)="belanjaSekarang()" >Belanja Sekarang</button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row *ngIf="list_cart.length>0">
+      <ion-col size="12" class="ion-no-padding">
+        <ion-card *ngFor="let x of list_cart" class="card-cart">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding">
+                <img src="{{base_url_image}}{{x.produk.foto}}">
+              </ion-col>
+              <ion-col size="9">
+                <div class="text_produk">
+                  <p class="harga">{{toRp(x.produk.harga)}}</p>
+                </div>
+                <div class="buttons">
+                  <button class="minus" (click)="kurang(x)" *ngIf="x.qty>1"  [ngClass]="{minus_biru: x.qty>1}">-</button>
+                  <button class="minus_merah" (click)="kurang(x)" *ngIf="x.qty==1"><ion-icon name="trash"></ion-icon></button>
+                  <label> {{x.qty}} </label>
+                  <button class="plus" (click)="tambah(x)" >+</button>
+                </div>
+                <p class="judul">{{limitText(x.nama,80)}}</p>
+
+                <div class="subtotal">
+                  <ion-row>
+                    <ion-col size="6" class="kiri">
+                      Sub-total
+                    </ion-col>
+                    <ion-col size="6" class="kanan">
+                      <b>{{toRp(x.qty*x.produk.harga)}}</b>
+                    </ion-col>
+                  </ion-row>
+                </div>
+                <!-- {{keranjang_text_hapus}} -->
+                <div class="hapus" (click)="hapus(x)" >
+                  <b><ion-icon name="trash"></ion-icon></b>
+                </div>
+
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="list_cart.length>0">
+      <ion-col size="12" class="ion-no-padding ion-padding-horizontal">
+        <button class="btn btn_checkout" (click)="goCheckout()" >Checkout</button>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- SKELETON LOADING -->
+    <div id="skeleton" *ngIf="showSkeleton">
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-row>
+        <ion-col size="12" *ngFor="let x of banners" >
+          <ion-card class="kamar-card">
+            <ion-card-header>
+              <ion-thumbnail style="width: 100%">
+                <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- END SKELETON LOADING -->
+  </div>
+</ion-content>

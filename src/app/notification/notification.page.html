@@ -1,0 +1,21 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>Notification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <div class="list" *ngFor="let x of items" >
+      <h5>{{x.subject}}</h5>
+      <small>{{x.created}}</small>
+      <p>{{x.message}}</p>
+    </div>
+  </div>
+</ion-content>

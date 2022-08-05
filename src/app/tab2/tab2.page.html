@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <ion-row>
+      <ion-col size="12">
+        <h5>{{kategori_title}}</h5>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="kategori.length>0">
+      <ion-col size="4" *ngFor="let x of kategori" (click)="goToList(x)" >
+        <div class="kategori">
+          <img src="{{base_url_image}}{{x.icon}}">
+          <h4>{{x.nama}}</h4>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- SKELETON LOADING -->
+    <div id="skeleton" *ngIf="kategori.length==0">
+      <ion-row>
+        <ion-col size="6" *ngFor="let x of banners" >
+          <ion-card class="kamar-card">
+            <ion-card-header>
+              <ion-thumbnail style="width: 100%">
+                <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- END SKELETON LOADING -->
+
+  </div>
+</ion-content>

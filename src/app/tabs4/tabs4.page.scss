@@ -1,0 +1,96 @@
+.no_order{
+    color: #ADDD80;
+}
+.padding{
+    background: #fff;
+    min-height: 100%;
+}
+.toolbar{
+    padding: 5px 10px;
+    padding-top: var(--ion-safe-area-top,0);
+}
+.page_title{
+    color: #00618E;
+    font-weight: bold;
+}
+.kiri{
+    text-align: left;
+}
+.kanan{
+    text-align: right;
+}
+.total{
+    color: #F8815F;
+}
+.card-cart{
+
+}
+.card-cart img{
+    height: auto;
+    width: auto;
+}
+.text_produk{
+    width: 55%;
+    float: left;
+}
+.harga{
+    margin: 0 auto;
+    color: #9ED559;
+    font-weight: bold;
+    text-align: left;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.judul{
+    margin: 0 auto;
+    text-align: left;
+    font-size: 13px;
+}
+.buttons{
+    width: 45%;
+    float: left;
+    text-align: right;
+}
+.buttons label{
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    width: 50%;
+    font-size: 20px;
+}
+.minus{
+    float: left;
+    width: 25%;
+    background: #dadada;
+    color: #fff;
+    /* padding: 5px; */
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px 0px;
+}
+.plus{
+    float: left;
+    width: 25%;
+    background: #00618E;
+    color: #fff;
+    /* padding: 5px; */
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px 0px;
+}
+.subtotal{
+    background: #EAF8FE;
+    padding: 4px 8px;
+    color: #0079BF;
+    float: left;
+    width: 100%;
+}
+.hapus{
+    color: #F65000;
+    padding: 0px 4px;
+}
+.div-no-cart{
+    text-align:center;
+}

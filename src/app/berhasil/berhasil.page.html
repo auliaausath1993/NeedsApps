@@ -1,0 +1,56 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons> -->
+    <ion-title class="page_title">{{berhasil_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="center">
+          <img src="assets/imgs/ic_berhasil.png">
+        </div>
+        <div class="center">
+          {{berhasil_no_pesanan}}
+        </div>
+        <div class="no_order center">
+          {{order.no_order}}
+        </div>
+        <div class="bg-abu center padding">
+          {{berhasil_text_segera}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        {{berhasil_batas}}
+      </ion-col>
+      <ion-col size="6" class="right">
+        {{countdown}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        {{berhasil_total}}
+      </ion-col>
+      <ion-col size="6" class="right">
+        {{toRp(order.total-order.diskon-order.poin)}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <button class="btn" (click)="backHome()" >{{subtitle_back}}</button>
+      </ion-col>
+      <ion-col size="12">
+        <button class="btn btn_bayar" (click)="getToken()" >{{subtitle_bayar}}</button>
+      </ion-col>
+    </ion-row>
+    
+  </div>
+</ion-content>

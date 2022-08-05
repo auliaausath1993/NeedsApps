@@ -1,0 +1,66 @@
+<ion-content>
+
+  <div class="body">
+    <ion-row class="padding">
+      <ion-col size="12" class="center">
+        <img src="assets/imgs/logo-needs.png" width="300">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="form-login">
+          <h4>{{login_form}}</h4>
+          <div class="">
+            <input *ngIf="!isRequestedOTP" type="tel" class="input_phone" placeholder="{{login_input_telp}}" [(ngModel)]="hp">
+            <input *ngIf="isRequestedOTP" class="input_phone" placeholder="{{login_input_otp}}" type="tel" [(ngModel)]="otp" max="5" min="5">
+          </div>
+          <button *ngIf="!isRequestedOTP" class="btn btn-login" (click)="requestOtp()">{{login_button_login}}</button>
+          <button *ngIf="isRequestedOTP" class="btn btn-login" (click)="login()">{{login_button_login}}</button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="isRequestedOTP">
+      <div class="countdown">Resend OTP in : {{timer}}</div>
+      <ion-button *ngIf="hasFinished"  expand="block" color="primary" class="btn" (click)="resend()">Resend OTP</ion-button>
+      <ion-button *ngIf="hasFinished"  expand="block" color="primary" class="btn" (click)="backLogin()">Back to login</ion-button>
+    </ion-row>
+
+    <ion-row *ngIf="!isRequestedOTP">
+      <ion-col size="12">
+        <div class="div_atau">
+          <!-- <div class="garis"></div>
+          <div class="atau"> Atau </div>
+          <div class="garis"></div> -->
+        </div>
+      </ion-col>
+      <ion-col size="12">
+        <!-- <ion-button expand="block" color="danger" (click)="doGoogleLogin()" class="btn-google">Login With Google </ion-button> -->
+        <!-- <ion-button expand="block" color="danger" (click)="signInWithGoogle()">Google Login Angular</ion-button> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="center">{{login_text_belum_punya}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <button class="btn btn-register" (click)="goToRegister()" >{{login_button_register}}</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <button class="btn btn-skip" (click)="goToHome()" ><u>Skip To Home</u></button>
+      </ion-col>
+    </ion-row>
+
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>{{detail_produk_beli}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding bg-abu">
+
+    <div class="konten">
+      <div class="isi">
+        <div *ngIf="!wishlist"  class="div_ic_heart" (click)="addToWishlist()" >
+          <ion-icon name="heart-empty" class="ic_heart"></ion-icon>
+        </div>
+        <div *ngIf="wishlist"  class="div_ic_heart" (click)="addToWishlist()" >
+          <ion-icon name="heart" class="ic_heart" class="red"></ion-icon>
+        </div>
+        <div class="img_detail">
+          <img src="{{foto}}">
+        </div>
+        <div *ngIf="harga_diskon==null || harga_diskon==0">
+          <p class="harga">{{toRp(harga)}}</p>
+          <p class="harga_diskon_null">{{toRp(harga)}}</p>
+        </div>
+        <div *ngIf="harga_diskon!=null && harga_diskon>0">
+          <p class="harga_diskon">{{toRp(harga)}}</p>
+          <p class="harga">{{toRp(harga_diskon)}}</p>
+        </div>
+
+        <!-- <label class="harga" *ngIf="harga_diskon==null">{{toRp(harga)}}</label>
+        <label class="harga_diskon_null" *ngIf="harga_diskon==null">{{toRp(harga)}}</label>
+        <label class="harga_diskon" *ngIf="harga_diskon>=0">{{toRp(harga)}}</label>
+        <label class="harga" *ngIf="harga_diskon>=0">{{toRp(harga_diskon)}}</label> -->
+
+        <label class="judul">{{nama}}</label>
+        <label class="max_order">Max Order / Item : {{max_order}}</label>
+        <p>{{deskripsi}}</p>
+
+        <!-- <ion-select class="select_varian" [(ngModel)]="varian_id" interface="action-sheet" [disabled]="disabled" placeholder="Select Varian">
+          <ion-select-option selected value="0">{{detail_produk_varian}}</ion-select-option>
+          <ion-select-option *ngFor="let x of varian" value="{{x.id}}">{{x.varian}}</ion-select-option>
+        </ion-select> -->
+      </div>
+      <div class="buttons">
+        <div class="isi">
+          <button class="minus" (click)="kurang()" [ngClass]="{minus_biru: qty>1}">-</button>
+          <input type="number" [(ngModel)]="qty">
+          <button class="plus" (click)="tambah()" >+</button>
+        </div>
+      </div>
+      <div class="isi">
+        <button class="btn btn_beli" (click)="addToCart()" >{{detail_produk_keranjang}}</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

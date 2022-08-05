@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/app/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>Wishlist</ion-title>
+    <!-- <input type="text" class="searchbar-toolbar" placeholder="{{home_input_cari}}" (click)="goToSearchPage()"> -->
+    <!-- <ion-searchbar animated placeholder="{{home_input_cari}}" [(ngModel)]="keyword"  (keyup.enter)="doSearch($event)" (ionChange)="doSearch($event)"></ion-searchbar> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <div *ngIf="produk.length==0" class="div-no-cart">
+      <img src="../../assets/imgs/no-wishlist.png">
+      <ion-row>
+        <ion-col size="12">
+          <button class="btn btn_checkout" (click)="goToHome()" >Cari Produk</button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row>
+      <ion-col size="6" *ngFor="let x of produk">
+        <div class="div_produk">
+          <div class="div_top_promo" *ngIf="x.harga_diskon!=null"><img src="assets/imgs/top-promo.png"></div>
+          <div class="div_top_promo" *ngIf="x.harga_diskon==null" ><img src="assets/imgs/putih.png"></div>
+          <div class="div_ic_heart">
+            <div *ngIf="!x.wishlist"  (click)="addToWishlist(x)" >
+              <ion-icon name="heart-empty" class="ic_heart"></ion-icon>
+            </div>
+            <div *ngIf="x.wishlist" (click)="addToWishlist(x)" >
+              <ion-icon name="heart" class="ic_heart" class="red"></ion-icon>
+            </div>
+          </div>
+          <div class="img_produk">
+            <img lazyLoad="{{base_url_image}}{{x.foto}}" [defaultImage]="'assets/imgs/logo.png'">
+          </div>
+          <div class="text_produk" (click)="goToDetailProduk(x)" >
+
+            <div *ngIf="x.harga_diskon==null || x.harga_diskon==0">
+              <p class="harga">{{toRp(x.harga)}}</p>
+              <p class="harga_diskon_null">{{toRp(x.harga)}}</p>
+            </div>
+            <div *ngIf="x.harga_diskon!=null && x.harga_diskon>0">
+              <p class="harga_diskon">{{toRp(x.harga)}}</p>
+              <p class="harga">{{toRp(x.harga_diskon)}}</p>
+            </div>
+
+            <p class="judul">{{limitText(x.nama,15)}}</p>
+          </div>
+          <button class="btn btn_beli" (click)="goToDetailProduk(x)">{{home_button_beli}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

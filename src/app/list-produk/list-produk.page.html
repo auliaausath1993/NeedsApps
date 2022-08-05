@@ -1,0 +1,64 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/app/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <!-- <input type="text" class="searchbar-toolbar" placeholder="{{home_input_cari}}" (click)="goToSearchPage()"> -->
+    <ion-searchbar #input type="search" animated placeholder="{{home_input_cari}}" [(ngModel)]="keyword"  (keyup.enter)="doSearch($event)" (ionChange)="doSearch($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <ion-row *ngIf="produk.length>0" >
+      <ion-col size="6" *ngFor="let x of produk;let idx = index;">
+        <div class="div_produk" [class.radius]="qty1Dibeli[idx]">
+          <div class="div_top_promo" *ngIf="x.harga_diskon!=null"><img src="assets/imgs/top-promo.png"></div>
+          <div class="div_top_promo" *ngIf="x.harga_diskon==null" ><img src=""></div>
+          <div *ngIf="x.get_wishlist<=0"  class="div_ic_heart" (click)="addToWishlist(x)" >
+            <ion-icon name="heart-empty" class="ic_heart"></ion-icon>
+          </div>
+          <div *ngIf="x.get_wishlist>0"  class="div_ic_heart" (click)="addToWishlist(x)" >
+            <ion-icon name="heart" class="ic_heart" class="red"></ion-icon>
+          </div>
+          <div class="img_produk" (click)="goToDetailProduk(x)">
+            <img lazyLoad="{{base_url_image}}{{getThumb(x.foto)}}" [defaultImage]="'assets/imgs/logo.png'">
+          </div>
+          <div class="text_produk">
+            <div *ngIf="x.harga_diskon==null || x.harga_diskon==0">
+              <p class="harga">{{toRp(x.harga)}}</p>
+              <p class="harga_diskon_null">{{toRp(x.harga)}}</p>
+            </div>
+            <div *ngIf="x.harga_diskon!=null && x.harga_diskon>0">
+              <p class="harga_diskon">{{toRp(x.harga)}}</p>
+              <p class="harga">{{toRp(x.harga_diskon)}}</p>
+            </div>
+            <p class="judul">{{limitText(x.nama,40)}}</p>
+          </div>
+          <button *ngIf="!qty1Dibeli[idx]" class="btn btn_beli" (click)="beliProduk('qty1',idx,x)">{{home_button_beli}}</button>
+          <div class="buttons" *ngIf="qty1Dibeli[idx]">
+            <button class="minus" (click)="kurang('qty1',idx,x)">-</button>
+            <input type="number" disabled [(ngModel)]="qty1[idx]">
+            <button class="plus" (click)="tambah('qty1',idx,x)" >+</button>
+          </div>
+          <!-- <button class="btn btn_beli" (click)="goToDetailProduk(x)">{{home_button_beli}}</button> -->
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="produk.length==0 && !isLoading">
+      <div class="no_product">
+        <img src="../../assets/imgs/no-data-img-19.png">
+      </div>
+    </ion-row>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

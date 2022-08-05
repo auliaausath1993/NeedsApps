@@ -1,0 +1,50 @@
+<ion-header no-border text-center>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="page_title" text-center>Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    
+    <div class="body">
+  
+      <ion-row>
+        <ion-col size="12">
+          <div class="form-login">
+            <div class="padding">
+              <label class="label">{{register_nama}}</label>
+              <input type="text" class="input_phone" placeholder="{{register_nama}}" [(ngModel)]="nama">
+            </div>
+  
+            <div class="padding">
+              <label class="label">{{register_no_hp}}</label>
+              <input type="tel" class="input_phone" placeholder="{{register_no_hp}}" [(ngModel)]="no_hp">
+            </div>
+  
+            <div class="padding">
+              <label class="label">{{register_email}}</label>
+              <input type="email" class="input_phone" placeholder="{{register_email}}" [(ngModel)]="email">
+            </div>
+  
+            <div class="padding">
+              <label class="label">{{register_alamat}}</label>
+              <input type="text" class="input_phone" placeholder="{{register_alamat}}" [(ngModel)]="alamat">
+            </div>
+  
+            <div class="padding">
+              <label class="label">{{register_no_ktp}}</label>
+              <input type="number" class="input_phone" placeholder="{{register_no_ktp}}" [(ngModel)]="no_ktp">
+            </div>
+  
+            <button class="btn btn-login" (click)="editProfile()">{{register_edit}}</button>
+          </div>
+        </ion-col>
+      </ion-row>
+  
+    </div>
+  
+  </ion-content>
+    

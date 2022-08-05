@@ -1,0 +1,207 @@
+.toolbar{
+    padding: 5px 10px;
+    padding-top: var(--ion-safe-area-top,0);
+}
+.page_title{
+    color: #00618E;
+    font-weight: bold;
+}
+
+ion-content {
+    --background: #f5f5f5;
+}
+
+.bg-white {
+    background-color: white;
+    height: 55px;
+}
+
+.kiri{
+    text-align: left;
+}
+.kanan{
+    text-align: right;
+}
+.total{
+    color: #F8815F;
+}
+.no_order{
+    color: #ADDD80;
+    font-weight: bold;
+    font-size: 18px;
+}
+h5{
+    font-weight: normal;
+    font-size: 16px;
+}
+p{
+    color: #7b7b7b;
+    font-size: 14px;
+    font-style: italic;
+}
+.body{
+    background: #f5f5f5;
+    padding: 0;
+}
+.mycard{
+    background: #fff;
+    margin: 0px 0px 10px 0px;
+    padding: 10px;
+}
+.header{
+    font-size: 14px;
+}
+.card-cart img{
+    height: auto;
+    width: auto;
+}
+.text_produk{
+    width: 75%;
+    float: left;
+}
+.harga{
+    margin: 0 auto;
+    color: #9ED559;
+    font-weight: bold;
+    text-align: left;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.judul{
+    margin: 0 auto;
+    text-align: left;
+    font-size: 13px;
+}
+.buttons{
+    width: 25%;
+    float: left;
+    text-align: right;
+}
+.buttons label{
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    width: 50%;
+    font-size: 14px;
+}
+.minus{
+    float: left;
+    width: 25%;
+    background: #dadada;
+    color: #fff;
+    /* padding: 5px; */
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px 0px;
+}
+.plus{
+    float: left;
+    width: 25%;
+    background: #00618E;
+    color: #fff;
+    /* padding: 5px; */
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px 0px;
+}
+.subtotal{
+    background: #EAF8FE;
+    padding: 4px 8px;
+    color: #0079BF;
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.hapus{
+    color: #F65000;
+}
+.bg-merah-dikit{
+    background: #ffe9e9;
+    padding: 4px 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+.bg-abu{
+    background: #f5f5f5;
+}
+.left{
+    color: #7b7b7b;
+}
+.konten{
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+
+    &:first-child {
+        padding: 4px;
+    }
+}
+.konten_float{
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+}
+.sc-ion-card-md-h{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    background: #fff;
+    margin: 0px auto;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #dadada;
+    }
+}
+.div_kupon{
+    display: flex;
+}
+.input_kupon{
+    width: 65%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 4px 10px;
+    border: 1px solid #dadada;
+    border-right: 0;
+    height: 40px;
+}
+.btn_kupon{
+    width: 35%;
+    border-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 4px 10px;
+    color: #fff;
+    font-weight: bold;
+    height: 40px;
+    margin-top: 0px;
+    font-size: 12px;
+}
+.btn_selanjutnya{
+    background: #00618E;
+    float: unset;
+}
+.info_diskon{
+    width: 100%;
+    text-align: center;
+}
+.cancel{
+    width: 100%;
+    text-align: center;
+    color: red;
+}
+.lihat{
+    text-decoration: underline;
+    margin: 8px 0;
+}
+.small{
+    font-size: 12px;
+    color: #838383;
+}
+.fullwidth{
+    width: 100%;
+}

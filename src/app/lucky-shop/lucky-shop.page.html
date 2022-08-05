@@ -1,0 +1,30 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>Lucky Shop</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="popup-berhasil" *ngIf="showPopup" >
+    <img src="assets/imgs/lucky-ticket.png">
+    <h4>{{luckyshop_selamat}}</h4>
+    <p>{{luckyshop_nama_voucher}}</p>
+    <button class="btn" (click)="dismissPopup()" >OK</button>
+  </div>
+  <img class="img-lucky-shop" src="assets/imgs/img_luckyshop.jpg" *ngIf="!isAnimated" (click)="animate()" >
+  <img class="img-lucky-shop" src="assets/imgs/gif2.gif" *ngIf="isAnimated" (click)="animate()">
+  <div class="padding center">
+    <div class="center">
+    <div class="tap">{{luckyshop_tap}} <small class="biru">{{luckyshop_keranjang}}</small></div>
+    </div>
+    <div class="center">
+      <div class="kesempatan">{{count_kesempatan}} {{luckyshop_kesempatan}}</div>
+    </div>
+    <div class="center">
+      <p (click)="goToListVoucher()" class="lihat">{{luckyshop_lihat}}</p>
+    </div>
+  </div>
+</ion-content>

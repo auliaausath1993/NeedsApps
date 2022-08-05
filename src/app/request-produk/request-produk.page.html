@@ -1,0 +1,53 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>Request Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="center">
+          <img src="../../assets/imgs/logo-needs.png" width="300">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="form-login">
+          <div class="padding">
+            <label class="label">Produk</label>
+            <input type="text" class="input_phone" placeholder="nama" [(ngModel)]="nama">
+          </div>
+
+          <div class="padding">
+            <label class="label">Ukuran/Kemasan</label>
+            <input type="text" class="input_phone" placeholder="ukuran" [(ngModel)]="ukuran">
+          </div>
+          <div class="padding">
+            <label class="label">Photo</label><br><br>
+            <input type="file" [(ngModel)]="bukti" ng2FileSelect [uploader]="uploader"/>
+            <!-- <label class="label">Photo</label><br><br>
+            <input type="file" [(ngModel)]="bukti" ng2FileSelect [uploader]="uploader"/> -->
+          </div>
+          <div class="padding" *ngIf="bukti">
+            <img src="https://needsmarket.id/adminpage/storage/app/{{bukti}}" height="300px">
+          </div>
+          <div class="padding">
+            <!-- <img src="../../assets/imgs/ic-kamera.png" class="browse" (click)="camera1()" > -->
+            <button class="btn btn-login" (click)="camera1()">Camera</button>
+            <button class="btn btn-login" style="margin-top: 16px;" (click)="postData()">Submit</button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,35 @@
+.list{
+    border-radius: 10px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #dadada;
+    float: left;
+    width: 100%;
+}
+.head{
+    color: #fff;
+    background: #00bf49;
+    padding: 10px 10px;
+    font-weight: bold;
+    float: left;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.head_red{
+    color: #fff;
+    background: #bf0039;
+    padding: 10px 10px;
+    font-weight: bold;
+    float: left;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.body{
+    float: left;
+    width: 100%;
+}
+.back{
+    font-size: 24px;
+    padding: 0px 10px;
+}

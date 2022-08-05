@@ -1,0 +1,7 @@
+{
+  "name": "needs-apps",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

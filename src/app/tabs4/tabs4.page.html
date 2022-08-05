@@ -1,0 +1,91 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title class="page_title">{{menu4}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding">
+    <ion-segment [(ngModel)]="status" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="ongoing">
+        <ion-label>{{order_text_diproses}}</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="done">
+        <ion-label>{{order_text_selesai}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="list.length==0 && !showSkeleton" class="div-no-cart">
+      <img src="../../assets/imgs/no-order.png">
+      <ion-row>
+        <ion-col size="12">
+          <button class="btn btn_checkout" (click)="goToHome()" >Belanja Sekarang</button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="list.length>0">
+      <ion-card *ngFor="let x of list" (click)="goToDetail(x)" >
+        <ion-card-header>
+          <ion-card-subtitle class="no_order">#{{x.no_order}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="6" class="kiri">
+              {{order_text_diorder}}
+            </ion-col>
+            <ion-col size="6" class="kanan">
+              {{x.created_at.replace(' ', 'T') | date: 'd MMM y H:m'}}
+            </ion-col>
+          </ion-row>
+
+          <div class="subtotal">
+            <ion-row>
+              <ion-col size="6" class="kiri">
+                Sub-total
+              </ion-col>
+              <ion-col size="6" class="kanan">
+                <b>{{toRp(x.total)}}</b>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div class="hapus">
+            <i>{{x.status}}</i>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+  <div class="padding" *ngIf="showSkeleton">
+    <!-- SKELETON LOADING -->
+    <div id="skeleton">
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-row>
+        <ion-col size="12" *ngFor="let x of banners" >
+          <ion-card class="kamar-card">
+            <ion-card-header>
+              <ion-thumbnail style="width: 100%">
+                <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- END SKELETON LOADING -->
+  </div>
+</ion-content>

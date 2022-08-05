@@ -1,0 +1,49 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title">{{pembayaran_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <div class="padding" *ngIf="data.length>0">
+    <h5>{{pembayaran_opsi}}</h5>
+    <div class="konten">
+      <div class="pembayaran_opsi" *ngFor="let x of data" (click)="checkout()" >
+        <p>{{x.nama}}</p>
+        <img src="{{base_url_image}}{{x.logo}}" class="logo_bayar">
+      </div>
+    </div>
+  </div>
+
+  <!-- SKELETON LOADING -->
+  <div class="padding">
+    <div id="skeleton" *ngIf="data.length==0">
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-row>
+        <ion-col size="12" *ngFor="let x of banners" >
+          <ion-card class="kamar-card">
+            <ion-card-header>
+              <ion-thumbnail style="width: 100%">
+                <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <!-- END SKELETON LOADING -->
+
+</ion-content>
+  

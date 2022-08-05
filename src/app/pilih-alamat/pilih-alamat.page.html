@@ -1,0 +1,16 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title">{{pengiriman_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding:15px"><button *ngIf="list_alamat.length>0"  class="btn btn_selanjutnya" (click)="kembali()" >Back</button>
+  </div>
+  <div class="list_alamat" *ngFor="let x of list_alamat" (click)="useAlamat(x)" >
+    {{x.alamat}}
+  </div> 
+</ion-content>

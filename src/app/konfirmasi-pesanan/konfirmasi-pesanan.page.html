@@ -1,0 +1,107 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/app/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title">{{konfirmasi_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="bg-merah-dikit" *ngIf="list_cart.length>0">
+    <ion-row>
+      <ion-col size="6" class="left"><b>{{konfirmasi_total}}</b></ion-col>
+      <ion-col size="6" class="right"><b>{{toRp(total)}}</b></ion-col>
+    </ion-row>
+  </div>
+  <div class="bg-white"></div>
+  <div class="ion-padding" *ngIf="list_cart.length>0">
+
+    <div class="konten">
+      <ion-card *ngFor="let x of list_cart" class="card-cart">
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="3" class="ion-align-self-center">
+              <img src="{{base_url_image}}{{x.produk.foto}}">
+            </ion-col>
+            <ion-col size="9">
+              <div class="text_produk">
+                <p class="harga">{{toRp(x.produk.harga)}}</p>
+                <p class="judul">{{x.nama}}</p>
+              </div>
+              <div class="buttons">
+                <label> {{x.qty}} </label>
+              </div>
+
+              <div class="subtotal">
+                <ion-row>
+                  <ion-col size="6" class="kiri">
+                    Sub-total
+                  </ion-col>
+                  <ion-col size="6" class="kanan">
+                    <b>{{toRp(x.produk.harga*x.qty)}}</b>
+                  </ion-col>
+                </ion-row>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+    <div class="konten" *ngIf="list_cart.length>0">
+      <!-- <div class="div_kupon" >
+        <ion-item lines="none" class="fullwidth">
+          <ion-label class="small">Use {{poin}} Poin ?</ion-label>
+          <ion-toggle slot="end"(ionChange)="myChange($event)"></ion-toggle>
+        </ion-item>
+      </div> -->
+
+      <p *ngIf="!voucherUsed" style="margin: 8px 0">{{konfirmasi_gunakan}}</p>
+      <div class="div_kupon" *ngIf="!voucherUsed" >
+        <input type="text" class="input_kupon" placeholder="{{konfirmasi_tulis}}" [(ngModel)]="kode_voucher">
+        <button class="btn btn_kupon" (click)="useVoucher()" >{{konfirmasi_pakai}}</button>
+      </div>
+      <div *ngIf="voucherUsed" >
+        <div class="info_diskon">Discount {{toRp(diskon)}} From Voucher : {{kode_voucher}}</div>
+        <div class="cancel" (click)="cancelVoucher()" >Cancel Voucher</div>
+      </div>
+      <div class="div_kupon" *ngIf="!voucherUsed">
+        <div class="center">
+          <p (click)="goToListVoucher()" class="lihat">{{luckyshop_lihat}}</p>
+        </div>
+      </div>
+    </div>
+
+    <button *ngIf="list_cart.length>0" class="btn btn_selanjutnya" (click)="goToPengiriman()" >{{konfirmasi_selanjutnya}}</button>
+  </div>
+
+  <!-- SKELETON LOADING -->
+  <div class="padding" *ngIf="loading">
+    <div id="skeleton">
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-row>
+        <ion-col size="12" *ngFor="let x of banners" >
+          <ion-card class="kamar-card">
+            <ion-card-header>
+              <ion-thumbnail style="width: 100%">
+                <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+              </ion-thumbnail>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <!-- END SKELETON LOADING -->
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>midtrans_dev</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!--
+["credit_card", "mandiri_clickpay", "cimb_clicks",
+    "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "indosat_dompetku",
+    "mandiri_ecash", "permata_va", "bca_va", "bni_va", "other_va", "gopay"
+    "kioson", "indomaret", "gci", "danamon_online"]
+-->
+<ion-content padding>
+  <ion-select class="myselect" [(ngModel)]="channel" interface="popover">
+    <ion-select-option value="bank_transfer">Bank Transfer</ion-select-option>
+    <ion-select-option value="credit_card">Credit Card</ion-select-option>
+    <ion-select-option value="bca_klikpay">BCA KlikPay</ion-select-option>
+    <ion-select-option value="mandiri_clickpay">Mandiri ClickPay</ion-select-option>
+    <ion-select-option value="gopay">Gopay</ion-select-option>
+  </ion-select>
+  <button class="btn-pay" ion-button (click)="get_token()">Pay!</button>
+  <p>{{result_midtrans}}</p>
+  </ion-content>

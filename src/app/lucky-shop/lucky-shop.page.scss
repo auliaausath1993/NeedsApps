@@ -1,0 +1,38 @@
+.img-lucky-shop{
+    width: 100%;
+}
+.biru{
+    font-size: 24px;
+    font-weight: bold;
+    color: #0079BF;
+}
+.tap{
+    font-size: 24px;
+    font-weight: bold;
+    color: #00bf49;
+    text-align: center;
+}
+.kesempatan{
+    border: 2px solid #ec811c;
+    padding: 10px;
+    text-align: center;
+    border-radius: 40px;
+    color: #ec811c;
+    font-weight: bold;
+    font-size: 15px;
+}
+.lihat{
+    color: #00bf49;
+    font-weight: bold;
+}
+.popup-berhasil{
+    position: absolute;
+    background: rgb(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    padding: 50px;
+}
+.popup-berhasil h4,p{
+    color: #fff;
+    text-align: center;
+}

@@ -1,0 +1,290 @@
+<ion-header no-border>
+  <ion-toolbar class="toolbar">
+    <input type="text" class="searchbar-toolbar" placeholder="{{home_input_cari}}" (click)="goToSearchPage()">
+    <div class="icon-toolbar"><img src="assets/imgs/ic_qrscan.png" (click)="scanBarcode()" ></div>
+    <div class="icon-toolbar"><img src="assets/imgs/ic_heart.png" (click)="goToWishlist()" ></div>
+    <div class="icon-toolbar"><img (click)="goToNotification()"  src="assets/imgs/ic_mail.png"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="produk.length>0">
+    <!-- <div class="lucky-egg" (click)="goToLuckyShop()" >
+      <img src="assets/imgs/ic_luckyshop.png">
+    </div> -->
+
+
+    <div class="div_cabang">
+      <div class="kiri">Pilih Cabang</div>
+      <div class="kanan">
+        <ion-select class="dropdown_cabang" (ionChange)="onChange($event)" interface="action-sheet" selectedText="{{cabang_selected}}">
+          <ion-select-option *ngFor="let x of all_cabang" value="{{x.id}}#{{x.nama}}">{{x.nama}}</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+
+
+    <ion-slides class="slider_home" [pager]="true" [options]="slideOptions">
+      <ion-slide *ngFor="let item of banners" >
+        <img src="{{base_url_image}}{{item.banner}}" (click)="goToNews(item)">
+      </ion-slide>
+    </ion-slides>
+    <div *ngIf="cabang_id==0" class="no-cabang">
+      -Tidak ada cabang yang dipilih, <br>Silakan pilih cabang terlebih dahulu-
+    </div>
+
+    <div *ngIf="cabang_id!=0">
+    <div class="floating-div">
+      <ion-row>
+        <ion-col size="6">
+          <div class="div-point">
+            <h4>{{home_text_poin}}</h4>
+            <h1>{{poin}}</h1>
+          </div>
+        </ion-col>
+        <ion-col size="6" (click)="goToListPromo()" >
+          <div class="div-promo">
+            <h4>{{home_text_lihat}}</h4>
+            <h1>{{home_text_promo}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+    <!-- 9ED559 -->
+    <div class="main-bg">
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <div class="title">
+            <img src="assets/imgs/ic_heart_outline.png">
+            <h4 style="margin-left: 10px;">{{home_text_favorite}}</h4>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <div class="products">
+          <div class="thumnails">
+            <div class="list-thumbnail">
+              <div class="img-thumb" *ngFor="let x of favorit;let idx = index">
+                  <div class="div_produk" [class.radius]="qty1Dibeli[idx]">
+                    <div class="div_top_promo" *ngIf="x.harga_diskon!=null" ><img src="assets/imgs/top-promo.png"></div>
+                    <div class="div_top_promo" *ngIf="x.harga_diskon==null" ><!--<img src="assets/imgs/putih.png">--></div>
+                    <div *ngIf="isLogin"  class="div_ic_heart">
+                      <div *ngIf="x.get_wishlist<=0" (click)="addToWishlist(x)" >
+                        <ion-icon name="heart-empty" class="ic_heart"></ion-icon>
+                      </div>
+                      <div *ngIf="x.get_wishlist>0" (click)="addToWishlist(x)" >
+                        <ion-icon name="heart" class="ic_heart" class="red"></ion-icon>
+                      </div>
+                    </div>
+                    <div class="div_ic_heart" *ngIf="!isLogin">
+                      <ion-icon name="heart" class="ic_heart" class="white"></ion-icon>
+                    </div>
+                    <div class="img_produk" (click)="goToDetailProduk(x)" >
+                      <img lazyLoad="{{base_url_image}}{{getThumb(x.foto)}}" [defaultImage]="'assets/imgs/logo.png'">
+                    </div>
+                    <div class="text_produk" (click)="goToDetailProduk(x)" >
+
+                      <div *ngIf="x.harga_diskon==null || x.harga_diskon==0">
+                        <p class="harga">{{toRp(x.harga)}}</p>
+                        <p class="harga_diskon_null">{{toRp(x.harga)}}</p>
+                      </div>
+                      <div *ngIf="x.harga_diskon!=null && x.harga_diskon>0">
+                        <p class="harga_diskon">{{toRp(x.harga)}}</p>
+                        <p class="harga">{{toRp(x.harga_diskon)}}</p>
+                      </div>
+
+                      <p class="judul">{{limitText(x.nama,15)}}</p>
+                    </div>
+                    <!-- <button class="btn btn_beli" (click)="goToDetailProduk(x)">{{home_button_beli}}</button> -->
+                    <button *ngIf="!qty1Dibeli[idx]" class="btn btn_beli" (click)="beliProduk('qty1',idx,x)">{{home_button_beli}}</button>
+                    <div class="buttons" *ngIf="qty1Dibeli[idx]">
+                      <button class="minus" (click)="kurang('qty1',idx,x)">-</button>
+                      <input type="number" disabled [(ngModel)]="qty1[idx]">
+                      <button class="plus" (click)="tambah('qty1',idx,x)" >+</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="kategori_x.length<=0" style="text-align:center;width: 100%;">
+      <img src="../../assets/imgs/loader.gif">
+    </div>
+    <div *ngIf="kategori_x.length>0" >
+    <ion-row *ngFor="let kat of kategori_x">
+      <ion-col size="12" class="ion-no-padding">
+        <div class="products">
+          <div class="category-title">
+            <h4>{{kat.nama}}</h4>
+            <h4 (click)="viewAll(kat.id)">View All</h4>
+          </div>
+          <div class="thumnails">
+            <div class="no-data" *ngIf="kat.list_produk.length==0" >No Data</div>
+            <div class="list-thumbnail">
+              <div class="img-thumb" *ngFor="let x of kat.list_produk;let idx = index;">
+                  <div class="div_produk" [class.radius]="qty2Dibeli[x.num]">
+                    <div class="div_top_promo" *ngIf="x.harga_diskon!=null" ><img src="assets/imgs/top-promo.png"></div>
+                    <div class="div_top_promo" *ngIf="x.harga_diskon==null" ><!--<img src="assets/imgs/putih.png">--></div>
+                    <div *ngIf="isLogin"  class="div_ic_heart">
+                      <div *ngIf="x.get_wishlist<=0" (click)="addToWishlist(x)" >
+                        <ion-icon name="heart-empty" class="ic_heart"></ion-icon>
+                      </div>
+                      <div *ngIf="x.get_wishlist>0" (click)="addToWishlist(x)" >
+                        <ion-icon name="heart" class="ic_heart" class="red"></ion-icon>
+                      </div>
+                    </div>
+                    <div class="div_ic_heart" *ngIf="!isLogin">
+                      <ion-icon name="heart" class="ic_heart" class="white"></ion-icon>
+                    </div>
+                    <div class="img_produk" (click)="goToDetailProduk(x)" >
+                      <img lazyLoad="{{base_url_image}}{{getThumb(x.foto)}}" [defaultImage]="'assets/imgs/logo.png'">
+                    </div>
+                    <div class="text_produk" (click)="goToDetailProduk(x)" >
+
+                      <div *ngIf="x.harga_diskon==null || x.harga_diskon==0">
+                        <p class="harga">{{toRp(x.harga)}}</p>
+                        <p class="harga_diskon_null">{{toRp(x.harga)}}</p>
+                      </div>
+                      <div *ngIf="x.harga_diskon!=null && x.harga_diskon>0">
+                        <p class="harga_diskon">{{toRp(x.harga)}}</p>
+                        <p class="harga">{{toRp(x.harga_diskon)}}</p>
+                      </div>
+
+                      <p class="judul">{{limitText(x.nama,15)}}</p>
+                    </div>
+                    <button *ngIf="!qty2Dibeli[x.num]" class="btn btn_beli" (click)="beliProduk('qty2',x.num,x)">{{home_button_beli}}</button>
+                    <div class="buttons" *ngIf="qty2Dibeli[x.num]">
+                      <button class="minus" (click)="kurang('qty2',x.num,x)">-</button>
+                      <input type="number" disabled [(ngModel)]="qty2[x.num]">
+                      <button class="plus" (click)="tambah('qty2',x.num,x)" >+</button>
+                    </div>
+                    <!-- <button class="btn btn_beli" (click)="goToDetailProduk(x)">{{home_button_beli}}</button> -->
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    </div>
+
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- SKELETON LOADING -->
+  <div id="skeleton" *ngIf="produk.length==0">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- END SKELETON LOADING -->
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    (click)="goToLuckyShop()"
+  >
+    <ion-fab-button class="myfab">
+      <img src="assets/imgs/ic_luckyshop.png">
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

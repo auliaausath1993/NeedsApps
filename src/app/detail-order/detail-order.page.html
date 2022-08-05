@@ -1,0 +1,226 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title">{{detail_order_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="body" *ngIf="list.length>0">
+
+    <div class="mycard">
+      <div class="padding">
+        <ion-row>
+          <ion-col size="12">
+            <div class="no_order">
+              {{no_order}}
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="header">
+          <ion-col size="6" class="left">{{detail_order_tgl}}</ion-col>
+          <ion-col size="6" class="right">{{tgl}}</ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="12" class="left flex-between">
+            <span>{{detail_order_pembayaran}}</span>
+            <span *ngIf="status_bayar=='paid' || status_bayar=='waiting'">
+              {{ payment ? paymentMethod[payment] : ''}}
+            </span>
+            <button *ngIf="status_bayar === 'unpaid' && status_order !== 'cancel'" class="btn btn-bayar" (click)="getToken()">{{subtitle_bayar}}</button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="header bg-ijo" *ngIf="status_bayar=='paid' || status_bayar=='waiting'">
+          <ion-col size="12" class="left flex-between">
+            <div class="ion-text-left">
+              <p *ngIf="payment=='credit_card' || payment=='bank_transfer'">{{bank}} {{masked_card}}</p>
+              <p *ngIf="payment=='gopay'">Go-Pay</p>
+              <p>{{transaction_time}}</p>
+            </div>
+            <a (click)="copy()">Salin No. VA</a>
+          </ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="12" class="left flex-between">
+            <span>Status Kirim & Pembayaran</span>
+            <div>
+              <ion-label style="color: #0079BF">{{ ucfirst(status_order) }}</ion-label> - <ion-label [color]="status_bayar === 'unpaid' ? 'danger' : 'success'">{{ ucfirst(status_bayar) }}</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <div class="div-status ion-margin-top">
+          <div class="item-status" [ngClass]="{active: status_order=='ongoing' || status_order=='ready' || status_order=='send' || status_order=='done'}">
+            <img src="../../assets/imgs/pending.png"><br>Ongoing
+          </div>
+          <div class="item-status" [ngClass]="{active: status_order=='ready' || status_order=='send'}">
+            <img src="../../assets/imgs/diproses.png"><br>Ready
+          </div>
+          <div class="item-status" [ngClass]="{active: status_order=='send' || status_order=='done'}">
+            <img src="../../assets/imgs/dikirim.png"><br>Send
+          </div>
+          <div class="item-status" [ngClass]="{active: status_order=='send'}">
+            <img src="../../assets/imgs/selesai.png"><br>Done
+          </div>
+        </div>
+
+        <!-- <ion-row class="header">
+          <ion-col size="6" class="left">{{detail_order_total_belanja}}</ion-col>
+          <ion-col size="6" class="right">{{toRp(subtotal)}}</ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="6" class="left">{{detail_order_biaya_kirim}}</ion-col>
+          <ion-col size="6" class="right">{{toRp(ongkir)}}</ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="6" class="left">Delivery Time</ion-col>
+          <ion-col size="6" class="right">{{waktu}}</ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="6" class="left">Discount</ion-col>
+          <ion-col size="6" class="right">{{toRp(diskon)}}</ion-col>
+        </ion-row>
+        <ion-row class="header">
+          <ion-col size="6" class="left">{{detail_order_total}}</ion-col>
+          <ion-col size="6" class="right">{{toRp(total-diskon)}}</ion-col>
+        </ion-row>
+        <ion-row class="header bg-merah-dikit">
+          <ion-col size="6" class="left">{{status_order}}</ion-col>
+          <ion-col size="6" class="right">{{status_bayar}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="status_bayar=='unpaid'" >
+          <ion-col size="12">
+            <button class="btn btn_bayar" (click)="getToken()" >{{subtitle_bayar}}</button>
+          </ion-col>
+        </ion-row> -->
+      </div>
+    </div>
+
+    <!-- <div class="mycard">
+      <div class="padding">
+        <h5>{{detail_order_alamat}}</h5>
+        <p>{{alamat}}</p>
+      </div>
+    </div> -->
+
+    <div class="mycard">
+      <ion-row>
+        <ion-col size="12">
+          <div class="padding">
+            <h5>{{detail_order_item}}</h5>
+          </div>
+          <ion-card *ngFor="let x of list" class="card-cart">
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="3">
+                  <img src="{{base_url_image}}{{x.produk.foto}}">
+                </ion-col>
+                <ion-col size="9">
+                  <div class="text_produk">
+                    <p class="harga">{{toRp(x.harga)}}</p>
+                    <p class="judul">{{x.produk.nama}}</p>
+                  </div>
+                  <div class="buttons">
+                    <label> {{x.qty}} </label>
+                  </div>
+
+                  <div class="subtotal">
+                    <ion-row>
+                      <ion-col size="6" class="kiri">
+                        Sub-total
+                      </ion-col>
+                      <ion-col size="6" class="kanan">
+                        <b>{{toRp(x.harga*x.qty)}}</b>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="mycard">
+      <ion-row class="header">
+        <ion-col size="6" class="left">Delivery Time</ion-col>
+        <ion-col size="6" class="right">{{hari}} {{waktu}}</ion-col>
+      </ion-row>
+      <!-- <ion-row class="header">
+        <ion-col size="6" class="left">Subtotal</ion-col>
+        <ion-col size="6" class="right">{{toRp(subtotal)}}</ion-col>
+      </ion-row> -->
+      <ion-row class="header" *ngIf="diskon>0" >
+        <ion-col size="6" class="left">Discount</ion-col>
+        <ion-col size="6" class="right">{{toRp(diskon)}}</ion-col>
+      </ion-row>
+      <ion-row class="header" *ngIf="poin>0" >
+        <ion-col size="6" class="left">Poin</ion-col>
+        <ion-col size="6" class="right">{{toRp(poin)}}</ion-col>
+      </ion-row>
+      <ion-row class="header" *ngIf="diskon_product>0" >
+        <ion-col size="6" class="left">Discount Product</ion-col>
+        <ion-col size="6" class="right">{{toRp(diskon_product)}}</ion-col>
+      </ion-row>
+      <ion-row class="header">
+        <ion-col size="6" class="left">{{detail_order_biaya_kirim}}</ion-col>
+        <ion-col size="6" class="right">{{toRp(ongkir)}}</ion-col>
+      </ion-row>
+      <ion-row class="header">
+        <ion-col size="6" class="left">{{detail_order_total}}</ion-col>
+        <ion-col size="6" class="right">{{toRp(total-diskon-poin)}}</ion-col>
+      </ion-row>
+    </div>
+
+    <div class="mycard">
+      <h4>History Order</h4>
+      <ion-row class="header" *ngFor="let x of order_log" >
+        <ion-col size="6" class="left">{{x.status}}</ion-col>
+        <ion-col size="6" class="right">{{x.created_at}}</ion-col>
+      </ion-row>
+    </div>
+
+    <div class="mycard">
+      <div class="padding">
+        <h5>{{detail_order_alamat}}</h5>
+        <p>{{alamat}}</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SKELETON LOADING -->
+  <div class="body" id="skeleton" *ngIf="list.length==0">
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 50%" class="center"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-row>
+      <ion-col size="12" *ngFor="let x of banners" >
+        <ion-card class="kamar-card">
+          <ion-card-header>
+            <ion-thumbnail style="width: 100%">
+              <ion-skeleton-text style="width: 100%" animated></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- END SKELETON LOADING -->
+
+</ion-content>

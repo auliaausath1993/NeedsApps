@@ -1,0 +1,21 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title" text-center>{{aturbahasa_update}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding">
+    <ion-item>
+      <ion-label>Bahasa</ion-label>
+      <ion-select placeholder="Pilih Bahasa" class="myselect" [(ngModel)]="bahasa">
+        <ion-select-option value="id">Indonesia</ion-select-option>
+        <ion-select-option value="en">English</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <button class="btn btn-login" (click)="update()">{{aturbahasa_update}}</button>
+  </div>
+</ion-content>

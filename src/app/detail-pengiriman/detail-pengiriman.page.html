@@ -1,0 +1,107 @@
+<ion-header no-border text-center>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page_title">{{pengiriman_title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <div class="bg-abu">
+
+    <div class="konten">
+      <ion-row>
+        <ion-col size="12" class="alamat">
+          {{pengiriman_alamat}}
+        </ion-col>
+        <button *ngIf="list_alamat.length>0"  class="btn btn_selanjutnya" (click)="chooseAlamat()" >Set {{pengiriman_alamat}}</button>
+        <!-- <ion-col size="6">
+          <ion-item lines="none">
+            <ion-label>{{pengiriman_saya}}</ion-label>
+            <ion-toggle slot="end"(ionChange)="myChange($event)"></ion-toggle>
+          </ion-item>
+        </ion-col> -->
+        <ion-col size="12" *ngIf="showChecked" >
+          <ion-item lines="none">
+            <ion-label>Save Alamat ?</ion-label>
+            <ion-toggle slot="end"(ionChange)="myChange($event)"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <div class="bg-abu padding">
+            <ion-textarea class="textarea_alamat" [(ngModel)]="form_alamat" placeholder="{{pengiriman_alamat}}" (ionChange)="changed($event)">{{alamat}}</ion-textarea>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="pengantaran">{{text_hari}}</ion-label>
+          <ion-select interface="action-sheet" [(ngModel)]="hari" class="waktu" (ionChange)="changedHari($event)">
+            <ion-select-option *ngFor="let x of array_date;let idx = index" value="{{x}}">{{x}}</ion-select-option>
+          </ion-select>
+          <!-- <ion-datetime displayFormat="YYYY-MM-DD" class="waktu"></ion-datetime> -->
+          <!-- <ion-select interface="action-sheet" [(ngModel)]="hari" class="waktu">
+            <ion-select-option *ngFor="let x of list_hari;let idx = index" value="{{x}}">{{x}}</ion-select-option>
+          </ion-select> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="pengantaran">{{pengantaran}}</ion-label>
+          <ion-select interface="action-sheet" [(ngModel)]="waktu" class="waktu">
+            <ion-select-option *ngFor="let x of waktu_pengantaran;let idx = index" value="{{x.id}}">{{x.dari_jam}} - {{x.sampai_jam}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="12">
+          <ion-label>Map</ion-label>
+          <div #map id="map"></div>
+        </ion-col>
+      </ion-row> -->
+    </div>
+
+    <div class="konten">
+      <ion-row>
+        <ion-col size="6" class="left">{{pengiriman_total_item}}</ion-col>
+        <ion-col size="6" class="right">{{total_item}}</ion-col>
+      </ion-row>
+      <hr>
+      <ion-row>
+        <ion-col size="6" class="left">{{pengiriman_total_belanja}}</ion-col>
+        <ion-col size="6" class="right">{{toRp(total)}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="left">{{pengiriman_biaya_kirim}}</ion-col>
+        <ion-col size="6" class="right">{{toRp(ongkir)}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="diskon>0" >
+        <ion-col size="6" class="left">Discount</ion-col>
+        <ion-col size="6" class="right">{{toRp(diskon)}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="diskon_product>0" >
+        <ion-col size="6" class="left">Discount Product</ion-col>
+        <ion-col size="6" class="right">{{toRp(diskon_product)}}</ion-col>
+      </ion-row>
+      <div class="div_kupon" >
+        <ion-item lines="none" class="fullwidth">
+          <ion-label class="small">Use {{poin_full}} Poin ?</ion-label>
+          <ion-toggle slot="end"(ionChange)="myChange2($event)"></ion-toggle>
+        </ion-item>
+      </div>
+      <ion-row class="bg-merah-dikit">
+        <ion-col size="6" class="left">{{pengiriman_grand_total}}</ion-col>
+        <ion-col size="6" class="right">{{toRp(ongkir+total-diskon-poin)}}</ion-col>
+      </ion-row>
+    </div>
+
+    <div class="padding">
+        <button class="btn btn_selanjutnya" (click)="alertOrder()" >{{pengiriman_selanjutnya}}</button>
+    </div>
+
+  </div>
+</ion-content>
+  

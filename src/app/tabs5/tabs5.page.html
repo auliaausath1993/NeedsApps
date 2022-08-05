@@ -1,0 +1,84 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>tabs5</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="padding">
+    <ion-row>
+        <ion-col size="12">
+          <h5 class="page_title" text-center>{{akun_login_sebagai}}</h5>
+          <label class="nama">{{nama}}</label>
+          <label class="email">{{email}}</label>
+          <label class="telp">{{no_hp}}</label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <button class="btn btn_edit" (click)="goToEditProfile()" >{{akun_button_edit}}</button>
+        </ion-col>
+      </ion-row>
+  </div>
+  
+  <img src="assets/imgs/bg-akun.png" style="width:100%">
+
+  <div class="bg-abu">
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToAturAlamat()" >{{akun_atur_alamat}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToAturBahasa()" >{{akun_atur_bahasa}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToKonten('privacy')" >{{akun_privacy}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToKonten('terms')">{{akun_syarat_ketentuan}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="kontakAdmin()">Kontak Admin</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToRequest()">Request Product</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_info" (click)="goToKritik()">Kritik Saran</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div class="padding">
+          <button class="btn btn_keluar" (click)="logout()" >{{akun_keluar}}</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

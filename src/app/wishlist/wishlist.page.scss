@@ -1,0 +1,189 @@
+ion-content {
+  --background: whitesmoke;
+}
+
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+  .toolbar{
+    padding: 5px 10px;
+    padding-top: var(--ion-safe-area-top,0);
+  }
+  .searchbar-toolbar{
+    width: 100%;
+    float: left;
+    background: #f7f7f7;
+    height: 30px;
+    padding: 2px 4px;
+    color: #dadada;
+    border: 0;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .icon-toolbar{
+    float: left;
+    width: 10%;
+    padding: 4px 8px;
+  }
+  .icon-toolbar img{
+    width: 100%;
+  }
+  .slider_home{
+    height: 25%;
+  }
+  .slider_home img{
+
+  }
+  .div-point{
+    background-image: url('../../assets/imgs/bg-poin.png');
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-size: cover;
+  }
+  .div-point h1{
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+  }
+  .div-point h4{
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .div-promo{
+    background-image: url('../../assets/imgs/bg-promo.png');
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-size: cover;
+  }
+  .div-promo h1{
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+  }
+  .div-promo h4{
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+    color: #fff;
+  }
+  .floating-div{
+    margin-top: -10px;
+    z-index: 1;
+    position: sticky;
+    background-image: url('../../assets/imgs/bg-home-08.png');
+    background-size: cover;
+  }
+  .title{
+    width: 100%;
+    float: left;
+  }
+  .title img{
+    width: 5%;
+    float: left;
+  }
+  .title h4{
+    margin: 0px 0px 0px 10px;
+    width: 90%;
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .div_produk{
+    border: 1px solid #f0f0f0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;
+  }
+  .div_produk img{
+    // height: 80px;
+  }
+  .text_produk{
+    padding: 10px;
+  }
+  .harga{
+    margin: 0 auto;
+    color: #9ED559;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  .harga_diskon{
+    margin: 0 auto;
+    color: rgb(150, 34, 40);
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 5px;
+    text-decoration: line-through;
+  }
+  .harga_diskon_null{
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 5px;
+    text-decoration: line-through;
+  }
+  .judul{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 13px;
+    height: 35px;
+  }
+  .btn_beli{
+    margin: 0;
+    border-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #9ED559;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+  .div_ic_heart{
+    width: 50%;
+    padding: 4px;
+    text-align: right;
+    display: inline-block;
+  }
+  .div_top_promo{
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+  }
+  .div_top_promo img{
+    height: 30px;
+  }
+  .thumnails{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    .list-thumbnail{
+      height: 100%;
+      white-space: nowrap;
+      .img-thumb{
+        display: inline-block;
+        margin:0 15px 0 0;
+      }
+      .selected-img{
+        border: 2px solid red;
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .img_produk{
+    width: 100%;
+    text-align: center;
+  }
+  .red{
+    color: red;
+  }
+
+  .div-no-cart {
+    text-align: center;
+  }

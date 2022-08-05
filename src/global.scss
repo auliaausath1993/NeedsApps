@@ -1,0 +1,303 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@media (min-width:768px) {
+    body{
+        background: #dadada;
+    }
+    .ion-page{
+        width: 420px !important;
+        margin: 0 auto;
+    }
+}
+.center{
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+.right{
+    text-align: right;
+}
+.merah{
+    color: #00BB47;
+}
+.no-border{
+    border: none !important;
+}
+.padding{
+    padding: 5px 15px;
+}
+.kamar-card{
+    border-radius: 10px;
+    padding: 0 !important;
+}
+.garis{
+    width: 100%;
+    height: 1px;
+    background: #dadada;
+}
+.nama_kamar{
+    font-weight: bold;
+    color: #00BB47;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.kategori_kamar{
+    font-style: italic;
+    color: #000;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.harga_kamar{
+    color: #00BB47;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.jarak{
+    color: #dadada;
+    font-size: 12px;
+}
+
+.item-cover {
+width: 100% !important;
+height: 1px !important;
+}
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+}
+.main{
+float: left;
+width: 100%;
+text-align: center;
+padding: 20px;
+}
+.splash{
+background: #00BB47;
+height: 100%;
+}
+.body{
+padding: 10px;
+float: left;
+width: 100%;
+}
+.card{
+padding: 10px;
+float: left;
+width: 100%;
+background: #fff;
+margin: 5px 0px;
+border-radius: 10px;
+}
+.mylabel, .myinput, .btn, .myselect{
+float: left;
+width: 100%;
+max-width: 100%;
+text-align: center;
+margin-bottom: 10px;
+}
+.mytextarea{
+float: left;
+width: 100%;
+max-width: 100%;
+text-align: center;
+margin-bottom: 10px;
+height: 100px;
+border-radius: 10px;
+}
+.btn{
+height: 40px;
+background: #00BB47;
+color: #FFFFFF;
+margin: 10px 0px;
+font-size: 16px;
+border-radius: 10px;
+}
+.myinput{
+height: 40px;
+padding: 5px 0px;
+border: 0;
+text-align: center;
+font-size: 14px;
+color: #00BB47;
+text-align: left;
+}
+.myselect{
+height: 40px;
+padding: 5px 0px;
+border: 0;
+text-align: center;
+font-size: 14px;
+border-bottom: 1px solid #000;
+color: #00BB47;
+text-align: left;
+}
+.mydiv{
+float: left;
+width: 100%;
+text-align: center;
+}
+.outer {
+display: table;
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+}
+.middle {
+display: table-cell;
+vertical-align: middle;
+padding: 0px 20px;
+}
+.inner {
+margin-left: auto;
+margin-right: auto;
+/*whatever width you want*/
+}
+.red{
+color: #00BB47;
+}
+.bold{
+font-weight: bold;
+}
+.checked{
+color: orange;
+}
+.alert-md .alert-wrapper{
+border-radius: 10px;
+}
+.alert-md .alert-button{
+width: 50%;
+margin: 0;
+border-radius: 0px;
+float: left;
+background: #4e6bf5;
+color: #fff;
+text-align: center;
+}
+.alert-md .alert-button-group{
+padding: 0;
+}
+.alert-md .alert-button .button-inner{
+margin: 0px 0px 0px -40px;
+}
+.alert-md .alert-sub-title{
+font-size: 13px;
+}
+.myAlertBtn{
+width: 100% !important;;
+}
+.myAlertBtn .button-inner{
+margin: 0px 0px 0px -90px !important
+}
+.fa {
+display: inline-block;
+font: normal normal normal 14px/1 FontAwesome !important;
+font-size: inherit;
+text-rendering: auto;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+.berbayar{
+padding: 10px;
+text-align: center;
+background: #00BB47;
+color: #fff;
+}
+.select-placeholder{
+    color: #000 !important;
+    opacity: 1 !important;
+}
+.my-toast{
+    margin-bottom: 50px !important;
+    padding: 0px 0px 100px 0px;
+    position: static;
+}
+
+.alert-wrapper.sc-ion-alert-md {
+    border-radius: 10px !important;
+    text-align: center !important;
+}
+.alert-head.sc-ion-alert-md {
+    text-align: center;
+}
+.alert-button.sc-ion-alert-md {
+    // width: 50% !important;
+    margin: 0;
+    text-align: center !important;
+}
+.alert-button-inner.sc-ion-alert-md {
+    -ms-flex-pack: end;
+    justify-content: center;
+    text-align: center !important;
+}
+.btn-center{
+    color: #0996d8 !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    text-align: center;
+}
+.btn-red{
+    background: tomato !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    width: 50% !important;
+}
+.btn-green{
+    background:#00BB47 !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    width: 50% !important;
+}
+.btn-center{
+    width: 100%;
+    text-align: center;
+}
+
+input, button {
+    &:focus {
+        outline: none;
+    }
+}
+
+.page_title{
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.no_product {
+    text-align: center;
+    width: 100%;
+}
+
+.radius {
+  border-radius: 10px;
+}
